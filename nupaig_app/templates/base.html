@@ -1,0 +1,39 @@
+{% load staticfiles %}{% load firstof from future %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"pt-br" }}">
+<head>
+	<title>{% block title_html %}{% endblock %}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block head %}
+
+  {% endblock head %}
+</head>
+<body>
+    {% autoescape on %}
+    <h4>NUPAIG - {% block h1 %}{% endblock %}</h4>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'principal:add_dependence' %}">Dependencia</a></li>
+    </ul>
+    <ul>
+        {% if user.is_authenticated %}
+       <li><strong>{% firstof user.get_short_name user.get_username %}</strong>.</li>
+       <li><a href="{% url 'mordor:logout' %}">{% trans "log out"|capfirst %}</a></li>
+       {% else %}
+       <li><a href="{% url 'mordor:login' %}">{% trans "log in"|capfirst %}</a></li>
+       <li><a href="{% url 'mordor:register' %}">{% trans "sign up"|capfirst %}</a></li>
+       {% endif %}
+    </ul>
+    <article>
+    	{% block article_content %}{% endblock %}
+    </article>
+    {% endautoescape %}
+
+    {% block scripts %}
+
+    {% endblock scripts %}
+</body>
+</html>

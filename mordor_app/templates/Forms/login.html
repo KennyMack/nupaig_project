@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title_html %}
+   Login
+{% endblock %}
+
+{% block h1 %}
+   Login
+{% endblock %}
+
+{% block article_content %}
+
+<form method="POST" action="{% url 'mordor:login' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table border="1">
+        {{ form_login.as_table}}
+        <tr>
+            <td><input type="submit" name="submit" value="Login" /></td>
+            <td colspan="1">
+            <input type="reset" name="clear" value="Limpar" />
+            <input type="button" name="cancel" onclick="window.location='{% url 'mordor:register' %}'"  value="Cancelar"/></td>
+        </tr>
+    </table>
+    <!--form.errors|striptags-->
+</form>
+{% endblock %}

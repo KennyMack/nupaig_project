@@ -13,7 +13,7 @@ def home(request):
 @login_required
 def add_dependence(request):
 
-    link_cancel = ''#reverse('principal:list_dependence')
+    link_items = reverse('principal:list_dependence')
     link_post = reverse('principal:add_dependence')
 
     frm = dependence_Form()
@@ -25,9 +25,9 @@ def add_dependence(request):
             description = frm.cleaned_data['dependence']
             Dep = dependence(dependence=description)
             Dep.save()
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('principal:list_dependence'))
     return render(request,
         'Forms/form_dependence.html',
         {'form': frm,
          'link_post': link_post,
-         'link_cancel': link_cancel})
+         'link_items': link_items})

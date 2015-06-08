@@ -7,7 +7,7 @@
       <ul>
         <li><input type="reset" name="clear" value="Limpar" /></li>
         <li><input type="submit" name="submit" value="Salvar" /></li>
-        <li><input type="button" name="cancel" onclick="window.location = '{{ link_cancel}}'" value="Cancelar"/></li>
+        <li><input type="button" name="cancel" onclick="window.location = '{{ link_items }}'" value="Listar"/></li>
       </ul>
     <li>{% csrf_token %}</li>
     {% block form_fields %}

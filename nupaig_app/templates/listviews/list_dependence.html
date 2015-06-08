@@ -1,0 +1,33 @@
+{% extends "base_list.html" %}
+{% load staticfiles %}
+{% block head_gv %}
+
+{% endblock  %}
+
+{% block title_html %}
+   Dependência
+{% endblock %}
+
+{% block h1 %}
+   Dependência
+{% endblock %}
+
+{% block grid_columns %}
+    <th>ID</th>
+    <th>Descrição</th>
+{% endblock grid_columns %}
+
+{% block grid_rows %}
+    {% for p in object_list %}
+        <tr id="dependence_{{p.id}}">
+            <td><label for="check_dependence_{{ p.id }}"></label><input class="sel_check" type="checkbox" id="check_dependence_{{ p.id }}" name="check_dependence_{{ p.id }}" value="{{ p.id }}" /></td>
+            <td>{{p.id}}</td>
+            <td><a href="">{{p.dependence|truncatechars:20}}</a></td>
+            <td></td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block script_gv %}
+
+{% endblock %}

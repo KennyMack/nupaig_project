@@ -22,7 +22,7 @@
         <tr id="dependence_{{p.id}}">
             <td><label for="check_dependence_{{ p.id }}"></label><input class="sel_check" type="checkbox" id="check_dependence_{{ p.id }}" name="check_dependence_{{ p.id }}" value="{{ p.id }}" /></td>
             <td>{{p.id}}</td>
-            <td><a href="">{{p.dependence|truncatechars:20}}</a></td>
+            <td><a href="{% url 'principal:detail_dependence' p.id %}">{{p.dependence|truncatechars:20}}</a></td>
             <td></td>
         </tr>
     {% endfor %}

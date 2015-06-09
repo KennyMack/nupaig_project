@@ -16,7 +16,7 @@
     <h4>NUPAIG - {% block h1 %}{% endblock %}</h4>
     <ul>
         <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'principal:add_dependence' %}">Dependencia</a></li>
+        <li><a href="{% url 'principal:list_dependence' %}">Dependencia</a></li>
     </ul>
     <ul>
         {% if user.is_authenticated %}

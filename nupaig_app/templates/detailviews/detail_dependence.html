@@ -1,0 +1,13 @@
+{% extends "base_detail.html" %}
+{% block title_html %}
+   Dependência
+{% endblock %}
+
+{% block h1 %}
+   Dependência
+{% endblock %}
+
+{% block detail_object %}
+    <h4><span>ID: </span>{{ object.id }}</h4>
+    <h4><span>Descrição: </span>{{ object.dependence }}</h4>
+{% endblock %}

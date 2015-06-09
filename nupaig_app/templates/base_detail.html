@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static  %}
+
+{% block article_content %}
+   <ul>
+        <li><a href="{{ link_new }}">Novo</a></li>
+        <li><a href="{{ link_edit }}">Editar</a></li>
+        <li><a href="{{ link_delete }}">Apagar</a></li>
+   </ul>
+   {% block detail_object %}
+
+   {% endblock detail_object %}
+
+{% endblock  %}

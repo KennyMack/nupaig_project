@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% load static  %}
+{% block head %}
+    <!--<script type="text/javascript" src="{% static 'js/controllers/controller.base_list.js' %}"></script>-->
+    {% block head_frm %}
+
+    {% endblock head_frm %}
+{% endblock  %}
+
 
 {% block article_content %}
     <form id="form_register" method="post" action="{{ link_post }}" enctype="multipart/form-data">

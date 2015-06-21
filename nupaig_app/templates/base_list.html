@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static  %}
 {% block head %}
-
+    <script type="text/javascript" src="{% static 'js/controllers/controller.base_list.js' %}"></script>
     {% block head_gv %}
 
     {% endblock head_gv %}
@@ -9,52 +9,35 @@
 
 {% block article_content %}
     {% csrf_token %}
-    <ul>
+    <ul ng-controller="controller_gridview">
         <li><button id="bt_grd_new" onclick="window.location ='{{ link_new }}'">Novo</button></li>
-        <li><button id="bt_grd_edit">Editar</button></li>
+        <li><button id="bt_grd_edit" ng-click="edit_button()" >Editar</button></li>
         <li><button id="bt_grd_delete">Apagar</button></li>
     </ul>
     <table id="grd_data_view">
         <caption>{{ caption }}</caption>
         <thead>
             <tr>
-              <td width="2%"><label for="check_all"></label><input type="checkbox" id="check_all" name="check_all" /></td>
-              {% block grid_columns %}
-              {% endblock grid_columns %}
+                <td width="2%"><label for="check_all"></label><input type="checkbox" id="check_all" name="check_all"  /></td>
+                {% block grid_columns %}
 
-              <th colspan="2" width=16% class="tb_cont">
-                <span style="margin-left:15px;margin-right:15px;">
-                      {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
-                </span>
-              </th>
+                {% endblock grid_columns %}
+                <th>value1 = <p ng-bind="check_gridview.checked"></p></th>
             </tr>
         </thead>
-        <tbody>
-            {% block grid_rows %}
+        {% block grid_rows %}
 
-            {% endblock grid_rows %}
-        </tbody>
-        {% if is_paginated %}
+        {% endblock grid_rows %}
         <tfoot>
             <tr>
-                <td colspan="3"> </td>
-                <td>
-                    {% if page_obj.has_previous %}
-                        <button id="bt_prev_register" onclick="window.location ='{{ link_list }}?page={{ page_obj.previous_page_number }}'">Anterior</button>
-                    {% else %}
-                        <button id="bt_prev_register" onclick="window.location ='{{ link_list }}'" disabled="true" >Anterior</button>
-                    {% endif %}
-
-                    {% if page_obj.has_next %}
-                        <button id="bt_next_register" onclick="window.location ='{{ link_list }}?page={{ page_obj.next_page_number }}'">Próximo</button>
-                    {% else %}
-                        <button id="bt_next_register" onclick="window.location ='{{ link_list }}'" disabled="true" >Próximo</button>
-                    {% endif %}
-                </td>
+                <td colspan="2"><a href="#" ng-click="get_prevpage()">&lt;</a></td>
+                <td colspan="2">Pagina:{% verbatim %} {{ actualpage  }} de {{ get_pagecount() }}{% endverbatim %}</td>
+                <td colspan="2"><a href="#" ng-click="get_nextpage()">&gt;</a></td>
             </tr>
         </tfoot>
-        {% endif %}
     </table>
+    {% block content_block %}
+    {% endblock content_block %}
 {% endblock %}
 
 {% block scripts %}
@@ -62,6 +45,15 @@
 
 {% endblock script_gv %}
 <script type="text/javascript">
+$(document).ready(function() {
+    /******************** prompt confirmation **************************/
+    $("#bt_grd_delete").click(function () {
+        var ret = show_confirmation('success', 'hello', function () {
+            //confirmed();
+        });
+    });
+});
 </script>
+
 
 {% endblock %}

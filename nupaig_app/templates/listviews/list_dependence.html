@@ -1,7 +1,7 @@
 {% extends "base_list.html" %}
 {% load staticfiles %}
 {% block head_gv %}
-
+    <script type="text/javascript" src="{% static 'js/controllers/controller.dependence.js' %}"></script>
 {% endblock  %}
 
 {% block title_html %}
@@ -12,21 +12,35 @@
    Dependência
 {% endblock %}
 
+{% block controller %}
+     controller_dependence
+{% endblock controller %}
+
 {% block grid_columns %}
     <th>ID</th>
     <th>Descrição</th>
 {% endblock grid_columns %}
 
 {% block grid_rows %}
-    {% for p in object_list %}
-        <tr id="dependence_{{p.id}}">
-            <td><label for="check_dependence_{{ p.id }}"></label><input class="sel_check" type="checkbox" id="check_dependence_{{ p.id }}" name="check_dependence_{{ p.id }}" value="{{ p.id }}" /></td>
-            <td>{{p.id}}</td>
-            <td><a href="{% url 'principal:detail_dependence' p.id %}">{{p.dependence|truncatechars:20}}</a></td>
-            <td></td>
-        </tr>
-    {% endfor %}
+    <tbody>
+    <tr ng-repeat="obj in objects" >
+        <td>
+            <input type="checkbox" ng-checked="value_checked(obj)" ng-click="toggleCheck(obj)" title=""/>
+            <!--<input type="checkbox" checkbox-group title=""/>-->
+        </td>
+        <td ng-bind="obj.id">
+        </td>
+        <td ng-bind="obj.dependence">
+        </td>
+    </tr>
+    </tbody>
 {% endblock %}
+
+{% block content_block %}
+    {% verbatim %}
+        {{checked_dependence}}
+    {% endverbatim %}
+{% endblock content_block %}
 
 {% block script_gv %}
 

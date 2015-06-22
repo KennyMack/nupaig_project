@@ -1,7 +1,8 @@
 /**
  * Created by Jonathan on 18/06/2015.
  */
-appNUPAIG.run(function($rootScope) {
+
+appNUPAIG.run(function( $rootScope) {
     $rootScope.namespaceurl = '';
     $rootScope.url = '';
     $rootScope.prev = '';
@@ -14,5 +15,3 @@ appNUPAIG.run(function($rootScope) {
     $rootScope.limit = 0;
     $rootScope.urledit = '';
 });
-
-console.log('main');

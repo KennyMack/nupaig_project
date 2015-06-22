@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load static  %}
 
+{% block head %}
+
+    {% block head_det %}
+
+    {% endblock head_det %}
+
+    <!--<script type="text/javascript" src="{% static 'js/controllers/controller.base_list.js' %}"></script>-->
+{% endblock  %}
+
 {% block article_content %}
    <ul>
         <li><a href="{{ link_new }}">Novo</a></li>

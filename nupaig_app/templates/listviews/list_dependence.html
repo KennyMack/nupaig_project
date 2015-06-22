@@ -23,23 +23,22 @@
 
 {% block grid_rows %}
     <tbody>
-    <tr ng-repeat="obj in objects" >
+    <tr  ng-repeat="obj in objects" >
         <td>
-            <input type="checkbox" ng-checked="value_checked(obj)" ng-click="toggleCheck(obj)" title=""/>
-            <!--<input type="checkbox" checkbox-group title=""/>-->
+            <label>
+                <input type="checkbox" ng-model="obj.check" ng-click="toggleCheck(obj)"/>
+            </label>
         </td>
         <td ng-bind="obj.id">
         </td>
-        <td ng-bind="obj.dependence">
+        <td ><a ng-href="{[{ urldetail + obj.id }]}" ng-bind="obj.dependence"></a>
         </td>
     </tr>
     </tbody>
 {% endblock %}
 
 {% block content_block %}
-    {% verbatim %}
-        {{checked_dependence}}
-    {% endverbatim %}
+
 {% endblock content_block %}
 
 {% block script_gv %}

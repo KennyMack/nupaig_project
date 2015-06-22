@@ -14,6 +14,10 @@ class dependenceResource(ModelResource):
         limit = 10
         serializer = Serializer()
 
+    def dehydrate(self, bundle):
+        bundle.data['check'] = 'false'
+        return bundle
+
 
         # fields = ('id', 'name', 'age', 'sex', 'get_sex_display', 'dob', 'alive', 'get_alive_display')
         #serializer = Serializer()

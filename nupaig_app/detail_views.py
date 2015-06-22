@@ -16,7 +16,7 @@ class dependence_DetailView(DetailView):
         context['link_edit'] = reverse('principal:update_dependence',
                                            kwargs={'pk': self.object.id}
                                        )
-        context['link_delete'] = reverse('principal:delete_dependence',
+        context['link_delete'] = reverse('principal:deletealldependence',
                                          kwargs={'pk': self.object.id }
                                          )
         return context

@@ -1,7 +1,16 @@
 {% extends "base_detail.html" %}
+{% load static  %}
 {% block title_html %}
    Dependência
 {% endblock %}
+
+{% block head_det %}
+    <script type="text/javascript" src="{% static 'js/controllers/controller.dependence.js' %}"></script>
+{% endblock  %}
+
+{% block controller %}
+     controller_dependence
+{% endblock controller %}
 
 {% block h1 %}
    Dependência

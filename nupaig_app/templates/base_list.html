@@ -1,28 +1,29 @@
 {% extends "base.html" %}
 {% load static  %}
 {% block head %}
-    <script type="text/javascript" src="{% static 'js/controllers/controller.base_list.js' %}"></script>
+
     {% block head_gv %}
 
     {% endblock head_gv %}
+
+    <script type="text/javascript" src="{% static 'js/controllers/controller.base_list.js' %}"></script>
 {% endblock  %}
 
 {% block article_content %}
     {% csrf_token %}
-    <ul ng-controller="controller_gridview">
-        <li><button id="bt_grd_new" onclick="window.location ='{{ link_new }}'">Novo</button></li>
-        <li><button id="bt_grd_edit" ng-click="edit_button()" >Editar</button></li>
-        <li><button id="bt_grd_delete">Apagar</button></li>
+    <ul ng-controller="controller_base_list">
+        <li><button id="bt_grd_new" onclick="window.location ='{{ link_new }}'" class="btn btn-primary">Novo</button></li>
+        <li><button id="bt_grd_edit" ng-click="edit_button()" class="btn btn-primary">Editar</button></li>
+        <li><button id="bt_grd_delete" ng-click="delete_button()" class="btn btn-danger">Apagar</button></li>
     </ul>
-    <table id="grd_data_view">
+    <table id="grd_data_view" ng-controller="controller_base_list" border="1">
         <caption>{{ caption }}</caption>
         <thead>
             <tr>
-                <td width="2%"><label for="check_all"></label><input type="checkbox" id="check_all" name="check_all"  /></td>
+                <th  width="2%"><label for="check_all"></label><input ng-model="gridview.checkall" ng-click="check_all()" type="checkbox" id="check_all" name="check_all" /></th>
                 {% block grid_columns %}
 
                 {% endblock grid_columns %}
-                <th>value1 = <p ng-bind="check_gridview.checked"></p></th>
             </tr>
         </thead>
         {% block grid_rows %}
@@ -31,14 +32,19 @@
         <tfoot>
             <tr>
                 <td colspan="2"><a href="#" ng-click="get_prevpage()">&lt;</a></td>
-                <td colspan="2">Pagina:{% verbatim %} {{ actualpage  }} de {{ get_pagecount() }}{% endverbatim %}</td>
+                <td colspan="2">Pagina: {[{ actualpage  }]} de {[{ get_pagecount() }]}</td>
                 <td colspan="2"><a href="#" ng-click="get_nextpage()">&gt;</a></td>
             </tr>
         </tfoot>
     </table>
+
     {% block content_block %}
+
     {% endblock content_block %}
+
 {% endblock %}
+
+
 
 {% block scripts %}
 {% block script_gv %}
@@ -47,11 +53,11 @@
 <script type="text/javascript">
 $(document).ready(function() {
     /******************** prompt confirmation **************************/
-    $("#bt_grd_delete").click(function () {
+    /*$("#bt_grd_delete").click(function () {
         var ret = show_confirmation('success', 'hello', function () {
             //confirmed();
         });
-    });
+    });*/
 });
 </script>
 

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static  %}
 {% block head %}
-    <!--<script type="text/javascript" src="{% static 'js/controllers/controller.base_list.js' %}"></script>-->
+    <script type="text/javascript" src="{% static 'js/controllers/controller.base_form.js' %}"></script>
     {% block head_frm %}
 
     {% endblock head_frm %}
@@ -9,14 +9,14 @@
 
 
 {% block article_content %}
-    <form id="form_register" method="post" action="{{ link_post }}" enctype="multipart/form-data">
+    <form id="form" name="form" method="post" action="{{ link_post }}" enctype="multipart/form-data" >
+    <ul ng-controller="controller_base_form">
+        <li><input class="btn btn-primary" type="submit" name="btn_submit" value="Salvar" /></li>
+        <li><input class="btn btn-primary" ng-click="url_location('{{ link_new }}')"  type="button" name="btn_new" value="Novo" /></li>
+        <li><input class="btn btn-primary" ng-click="url_location('{{ link_items }}')" type="button" name="btn_cancel"  value="Cancelar"/></li>
+    </ul>
     <ul class="form">
-      <ul>
-        <li><input type="reset" name="clear" value="Limpar" /></li>
-        <li><input type="submit" name="submit" value="Salvar" /></li>
-        <li><input type="button" name="cancel" onclick="window.location = '{{ link_items }}'" value="Listar"/></li>
-      </ul>
-    <li>{% csrf_token %}</li>
+    {% csrf_token %}
     {% block form_fields %}
 
     {% endblock form_fields %}

@@ -7,14 +7,15 @@
 
     {% endblock head_det %}
 
-    <!--<script type="text/javascript" src="{% static 'js/controllers/controller.base_list.js' %}"></script>-->
+    <script type="text/javascript" src="{% static 'js/controllers/controller.base_detail.js' %}"></script>
 {% endblock  %}
 
 {% block article_content %}
-   <ul>
-        <li><a href="{{ link_new }}">Novo</a></li>
-        <li><a href="{{ link_edit }}">Editar</a></li>
-        <li><a href="{{ link_delete }}">Apagar</a></li>
+   <ul ng-controller="controller_base_detail">
+       <li><button id="bt_grd_new"  ng-click="url_location('{{ link_list }}')" class="btn btn-primary">Lista</button></li>
+       <li><button id="bt_grd_new"  ng-click="url_location('{{ link_new }}')" class="btn btn-primary">Novo</button></li>
+       <li><button id="bt_grd_edit" ng-click="url_location('{{ link_edit }}')" class="btn btn-primary">Editar</button></li>
+       <li><button id="bt_grd_delete"  ng-click="url_delete('{{ link_delete }}', '{{ link_list }}')" class="btn btn-danger">Apagar</button></li>
    </ul>
    {% block detail_object %}
 

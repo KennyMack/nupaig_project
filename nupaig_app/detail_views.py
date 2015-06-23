@@ -12,6 +12,7 @@ class dependence_DetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(dependence_DetailView, self).get_context_data(**kwargs)
+        context['link_list'] = reverse('principal:list_dependence')
         context['link_new'] = reverse('principal:add_dependence')
         context['link_edit'] = reverse('principal:update_dependence',
                                            kwargs={'pk': self.object.id}

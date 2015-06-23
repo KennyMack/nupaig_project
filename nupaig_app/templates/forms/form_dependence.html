@@ -17,5 +17,16 @@
 {% endblock controller %}
 
 {% block form_fields %}
+    <!--<li>
+        <label for="txt_dependence">Dependencia:</label>
+        <input id="txt_dependence" name="txt_dependence" ng-model="model_dependence.dependence" required="" placeholder="Dependência" type="text" />
+        <div ng-show="form.$submitted || form.txt_dependence.$touched">
+          <span ng-show="form.txt_dependence.$error.required">Este campo é obrigatório.</span>
+        </div>
+    </li>-->
     {{ form.as_ul }}
+    <div ng-show="form.$submitted || form.dependence.$touched">
+      <span ng-show="form.dependence.$error.required">Este campo é obrigatório.</span>
+    </div>
+    {[{ model_dependence.dependence }]}
 {% endblock %}

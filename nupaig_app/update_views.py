@@ -14,6 +14,7 @@ class dependence_UpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(dependence_UpdateView, self).get_context_data(**kwargs)
         context['link_items'] = reverse('principal:list_dependence')
+        context['link_new'] = reverse('principal:add_dependence')
         context['link_post'] = ''
         return context
 

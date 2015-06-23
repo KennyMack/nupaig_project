@@ -23,8 +23,13 @@ urlpatterns = patterns(
     url(r'^api/', include(v1_api.urls)),
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', 'nupaig_app.views.home', name='home'),
-    url(r'^dependence/$', 'nupaig_app.views.add_dependence', name='add_dependence'),
+    url(r'^$',
+        'nupaig_app.views.home',
+        name='home'),
+
+    url(r'^dependence/$',
+        'nupaig_app.views.add_dependence',
+        name='add_dependence'),
 
     url(r'^list-dependences/$',
         login_required(

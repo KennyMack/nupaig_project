@@ -1,7 +1,6 @@
 /**
  * Created by Jonathan on 20/06/2015.
  */
-'use strict';
 appNUPAIG.controller('controller_base_list', [
     '$rootScope',
     '$scope',
@@ -17,23 +16,22 @@ appNUPAIG.controller('controller_base_list', [
         };
         $scope.listsel = [];
         $scope.edit_button = function(){
-            $scope.listsel =($filter('filter')($rootScope.objects, {'check': true}));
-            if ($rootScope.urledit != '')
+            $scope.listsel = ($filter('filter')($rootScope.objects, {'check': true}));
+            if (($scope.listsel.length > 0) && ($rootScope.urledit != ''))
                 window.location = $rootScope.urledit + $scope.listsel[$scope.listsel.length-1].id;
             else
                 message_Alert('alert', 'Selecione um registro');
         };
 
         $scope.delete_button = function(){
-            if($rootScope.objects.length > 0) {
-                message_Ask('alert', ($filter('filter')($rootScope.objects, {'check': true}))+ 'Deseja excluir ?', function () {
-                    angular.forEach($rootScope.objects, function (value, key) {
-                        if (value.check) {
-                            if (PostRequest(get_url_delete('delete_dependence') + value.id.toString(), '')) {
-                                //$scope.remove_Row(value);
-                                $rootScope.objects.splice($rootScope.objects.indexOf(value), 1);
-                            }
+            $scope.listsel =($filter('filter')($rootScope.objects, {'check': true}));
+            if($scope.listsel.length > 0) {
+                message_Ask('alert', 'Deseja excluir ?', function () {
+                    angular.forEach($scope.listsel, function (value, key) {
+                        if (PostRequest(get_url_delete('delete_dependence') + value.id.toString(), '')) {
+                            $rootScope.objects.splice($rootScope.objects.indexOf(value), 1);
                         }
+
                     });
                 });
             }

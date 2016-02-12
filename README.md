@@ -1,2 +1,2 @@
 # nupaig_project
-A medic project made with Django
+A medical project made with Django
